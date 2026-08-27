@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calvin Thrasher — Mechanical Engineering</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:      #142433;
+    --paper:     #FFFFFF;
+    --line:      #DEDAD0;
+    --muted:     #6B7580;
+    --amber:     #A67C00;
+    --max: 880px;
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--navy);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+  .wrap{ max-width:var(--max); margin:0 auto; padding:0 28px; }
+  .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--amber);
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:10;
+    background:rgba(250,249,245,0.9);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:var(--max); margin:0 auto; padding:18px 28px;
+    display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; gap:12px;
+  }
+  .nav-mark{ font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:.05em; text-decoration:none; }
+  .nav-links{ display:flex; gap:24px; flex-wrap:wrap; }
+  .nav-links a{
+    text-decoration:none; font-size:14px; color:var(--muted);
+    transition:color .15s;
+  }
+  .nav-links a:hover, .nav-links a:focus-visible{ color:var(--navy); outline:none; }
+
+  /* ---------- HERO ---------- */
+  header.hero{ padding:72px 0 56px; }
+  .hero-row{ display:flex; gap:36px; align-items:center; flex-wrap:wrap; }
+  .hero-text{ flex:1; min-width:260px; }
+  h1.name{
+    font-family:'Space Grotesk', sans-serif; font-weight:700;
+    font-size:clamp(2.2rem, 5vw, 3rem);
+    line-height:1.08; margin:10px 0 10px; letter-spacing:-0.01em;
+  }
+  .role-line{
+    font-family:'IBM Plex Mono', monospace; font-size:13.5px;
+    color:var(--muted); margin:0 0 18px;
+  }
+  p.lede{ font-size:1.05rem; max-width:56ch; color:#3C4650; margin:0; }
+
+  .photo{
+    width:150px; height:150px; flex:0 0 auto;
+    border-bottom:2px solid var(--amber);
+    overflow:hidden;
+  }
+  .photo img{ width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(10%); }
+
+  .meta-line{
+    display:grid; grid-template-columns:auto 1fr; gap:6px 28px;
+    margin-top:32px; padding-top:20px; border-top:1px solid var(--line);
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--muted);
+  }
+  .meta-line b{ color:var(--navy); font-weight:500; }
+
+  /* ---------- SECTIONS ---------- */
+  section{ padding:44px 0; border-top:1px solid var(--line); }
+  h2{
+    font-family:'Space Grotesk', sans-serif; font-weight:600;
+    font-size:1.35rem; margin:6px 0 24px; letter-spacing:-0.01em;
+  }
+
+  .bg-text{ max-width:64ch; color:#3C4650; font-size:1rem; }
+  .bg-text p{ margin:0 0 15px; }
+  .bg-text strong{ color:var(--navy); font-weight:600; }
+
+  /* ---------- EXPERIENCE ---------- */
+  .exp-list{ display:flex; flex-direction:column; gap:26px; margin-top:8px; }
+  .exp-item{ display:flex; gap:20px; }
+  .exp-year{
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--muted);
+    width:92px; flex:0 0 auto; padding-top:3px;
+  }
+  .exp-body h3{ font-family:'Space Grotesk', sans-serif; font-size:1.05rem; margin:0 0 4px; font-weight:600; }
+  .exp-body .company{ color:var(--amber); font-size:.92rem; font-weight:500; }
+  .exp-body p{ margin:6px 0 0; color:#3C4650; font-size:.94rem; }
+  @media (max-width:560px){
+    .exp-item{ flex-direction:column; gap:4px; }
+    .exp-year{ width:auto; }
+  }
+
+  /* ---------- PROJECTS ---------- */
+  .proj-list{ display:flex; flex-direction:column; margin-top:8px; }
+  .proj-item{
+    padding:18px 0; border-top:1px solid var(--line);
+    display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap;
+  }
+  .proj-item:last-child{ border-bottom:1px solid var(--line); }
+  .proj-item h3{ font-family:'Space Grotesk', sans-serif; font-size:1.05rem; margin:0 0 4px; font-weight:600; }
+  .proj-item p{ margin:0; color:var(--muted); font-size:.92rem; max-width:44ch; }
+  .proj-tag{
+    font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--amber);
+    white-space:nowrap; padding-top:4px;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{ padding:40px 0 48px; }
+  .contact-row{
+    display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:20px;
+  }
+  .contact-links{ display:flex; gap:22px; flex-wrap:wrap; }
+  .contact-links a{
+    font-size:14px; text-decoration:none; color:var(--navy);
+    border-bottom:1px solid var(--line); padding-bottom:2px;
+    transition:border-color .15s, color .15s;
+  }
+  .contact-links a:hover{ border-color:var(--amber); color:var(--amber); }
+  .stamp{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--muted); }
+
+  ::selection{ background:var(--amber); color:#fff; }
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--amber); outline-offset:2px; }
+  @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-mark" href="index.html">Calvin Thrasher</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap" id="top">
+
+  <header class="hero">
+    <div class="hero-row">
+      <div class="hero-text">
+        <span class="label">Mechanical Engineering</span>
+        <h1 class="name">Calvin Thrasher</h1>
+        <p class="role-line">Robotics &amp; Automation — Iowa State University</p>
+        <p class="lede">I design and build mechanical systems with a focus on robotics, automation, and manufacturing — with hands-on experience across CAD, project engineering, and automation integration in industrial environments.</p>
+      </div>
+      <div class="photo">
+        <img src="https://lh3.googleusercontent.com/sitesv/AG8ngQV8IPuVKb7jfbEpnNs5hI1AJSRtYNK-76QIJDFb-aFF-h5kigL321WoSmR-upSG0mIQZSsW3FvRhhxGOdHMuc8RzxpXcL_deMogEZr7UX1S3_L69NPqgh_qK61MpMTNCJjFUOCeT9hssuzR8UxLa382Ay4Ai0Cj-aQpgJb5BudwV0IlEuLQ-TasC5BHz3h9qVOhDzkeUwtoGqIzbUVHvURnIIZLrHR7GzvqXLQ0DCQ=w400"
+             alt="Portrait of Calvin Thrasher"
+             onerror="this.parentElement.style.display='none'">
+      </div>
+    </div>
+    <div class="meta-line">
+      <span>Institution: <b>Iowa State University</b></span>
+      <span>Contact: <b>calvinelliottthrasher@gmail.com</b></span>
+      <span>Status: <b>Open to opportunities</b></span>
+      <span>Resume: <b><a href="calvin-thrasher-resume.pdf" target="_blank" rel="noopener" style="color:var(--amber); text-decoration:none; border-bottom:1px solid var(--amber);">View / Download</a></b></span>
+    </div>
+  </header>
+
+  <section id="background">
+    <span class="label">01 · Background</span>
+    <h2>About me</h2>
+    <div class="bg-text">
+      <p>I'm a <strong>Mechanical Engineering student at Iowa State University</strong>, with professional experience spanning the robotics, automation, and construction industries — working in robotic design, automation equipment integration, and project management.</p>
+      <p>This past summer, I worked across both the robotics and manufacturing industries with a <strong>Stealth Startup</strong> and <strong>Premier Tech</strong>. At the Stealth Startup, I worked on UMI hardware projects, including a 1-DOF claw, a 21-DOF hand, and the mass manufacturing of company-internal products. As a Project Engineer at Premier Tech, I served as an automation equipment integrator, using Autodesk Revit to plan integrations across industrial facilities nationwide.</p>
+      <p>On campus, I've held roles across <strong>Triangle Fraternity</strong> and <strong>Cyber Robotics</strong> at Iowa State. Within Cyber Robotics, I serve as President for the 2026–2027 season while also serving as Mechanical Team Lead, and served as Executive Competition Director this past semester. Within Triangle, I was elected twice as New Member Educator, welcoming 40+ members into the fraternity.</p>
+    </div>
+  </section>
+
+  <section id="experience">
+    <span class="label">02 · Experience</span>
+    <h2>Where I've worked</h2>
+    <div class="exp-list">
+      <div class="exp-item">
+        <div class="exp-year">2026</div>
+        <div class="exp-body">
+          <h3>Robotics Hardware Engineering Intern</h3>
+          <span class="company">Stealth Startup</span>
+          <p>Robotics design work focused on data collection devices.</p>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-year">2026</div>
+        <div class="exp-body">
+          <h3>Project Engineer Intern</h3>
+          <span class="company">Premier Tech</span>
+          <p>Integrated automation equipment using Autodesk Revit across industrial facilities in the U.S.</p>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-year">2025</div>
+        <div class="exp-body">
+          <h3>Project Engineer Intern</h3>
+          <span class="company">Keen Project Solutions</span>
+          <p>Project management experience on the project engineering team.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <span class="label">03 · Projects</span>
+    <h2>What I've built</h2>
+    <div class="proj-list">
+      <div class="proj-item">
+        <div>
+          <h3>Cycloidal Drive Gearbox</h3>
+          <p>Custom drivetrain project focused on gearbox design for compact robotic joints.</p>
+        </div>
+        <div class="proj-tag">Design / Build</div>
+      </div>
+      <div class="proj-item">
+        <div>
+          <h3>Cyber Robotics</h3>
+          <p>Competitive robotics team focused on mechanical design and team leadership.</p>
+        </div>
+        <div class="proj-tag">Team / Leadership</div>
+      </div>
+      <div class="proj-item">
+        <div>
+          <h3>Phantom Robotics</h3>
+          <p>Robotics competition project focused on mechanical design and system integration.</p>
+        </div>
+        <div class="proj-tag">Competitive Robotics</div>
+      </div>
+    </div>
+    <p style="margin-top:20px;"><a href="projects.html" style="color:var(--amber); font-size:.94rem; text-decoration:none; border-bottom:1px solid var(--amber); padding-bottom:2px;">See full project details →</a></p>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="contact-row">
+      <div class="contact-links" id="contact">
+        <a href="mailto:calvinelliottthrasher@gmail.com">calvinelliottthrasher@gmail.com</a>
+        <a href="https://www.linkedin.com/in/calvin-thrasher2028/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <span class="stamp">© 2026 Calvin Thrasher</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  if(location.hostname!=='localhost' && location.hostname!=='127.0.0.1') return;
+  var lastModified=null;
+  setInterval(function(){
+    fetch(location.pathname,{method:'HEAD',cache:'no-store'}).then(function(res){
+      var lm=res.headers.get('Last-Modified');
+      if(lastModified===null){ lastModified=lm; }
+      else if(lm && lm!==lastModified){ location.reload(); }
+    }).catch(function(){});
+  },1000);
+})();
+</script>
+</body>
+</html>
